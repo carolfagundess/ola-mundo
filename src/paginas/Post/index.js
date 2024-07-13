@@ -1,3 +1,5 @@
+import "./Post.css";
+
 import { useParams } from "react-router-dom";
 import posts from "json/posts.json";
 import PostModelo from "componentes/PostModelo";
@@ -13,12 +15,18 @@ export default function Post() {
 
   console.log(post);
 
+  if (!post) {
+    return <h1>Post não encontrado!...</h1>;
+  }
+
   return (
     <PostModelo
       fotoCapa={`/assets/posts/${post.id}/capa.png`}
       titulo={post.titulo}
     >
-      <ReactMarkdown>{post.texto}</ReactMarkdown>
+      <div className="post-markdown-container">
+        <ReactMarkdown>{post.texto}</ReactMarkdown>
+      </div>
     </PostModelo>
   );
 }
